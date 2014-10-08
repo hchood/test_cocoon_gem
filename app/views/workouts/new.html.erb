@@ -2,10 +2,23 @@
 
 <div>
   <%= form_for @workout do |f| %>
+  <!-- fields for workout -->
     <div>
       <%= f.label :name %>
       <%= f.text_field :name %>
     </div>
+
+  <!-- fields for workout_exercise -->
+
+    <fieldset id="workout-exercises">
+      <ol>
+        <%= f.fields_for :workout_exercises do |workout_exercise| %>
+          <%= render 'workout_exercise_fields', f: workout_exercise %>
+        <% end %>
+      </ol>
+
+      <%= link_to_add_association 'add exercise', f, :workout_exercises, 'data-association-insertion-node' => '#workout-exercises ol', 'data-association-insertion-method' => "append", wrap_object: Proc.new {|workout_exercise| workout_exercise.build_exercise; workout_exercise } %>
+    </fieldset>
 
     <div>
       <%= f.submit %>

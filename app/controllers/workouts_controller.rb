@@ -1,6 +1,7 @@
 class WorkoutsController < ApplicationController
   def new
     @workout = Workout.new
+    @workout.workout_exercises.build if @workout.workout_exercises.empty?
   end
 
   def create
