@@ -1,6 +1,7 @@
 <li class="control-group nested-fields">
   <div class="controls">
     <%= f.fields_for :exercise do |workout_exercise| %>
+      <%= workout_exercise.label :name %>
       <%= workout_exercise.text_field :name %>
     <% end %>
 
