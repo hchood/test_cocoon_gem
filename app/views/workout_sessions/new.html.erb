@@ -1,0 +1,21 @@
+<div>
+  <%= form_for [@user, @workout_session] do |f| %>
+  <!-- fields for workout session -->
+    <div>
+      <%= f.label :date_completed %>
+      <%= f.date_select :date_completed %>
+    </div>
+
+  <!-- fields for workout (which have workout_exercises nested within them OMG PARTIALCEPTION) -->
+
+    <fieldset id="workout">
+      <%= f.fields_for :workout do |workout| %>
+        <%= render 'workout_fields', f: workout %>
+      <% end %>
+    </fieldset>
+
+    <div>
+      <%= f.submit %>
+    </div>
+  <% end %>
+</div>
